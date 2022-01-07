@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:excel="http://www.mulesoft.org/schema/mule/excel"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/excel http://www.mulesoft.org/schema/mule/excel/current/mule-excel.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="excel-connector-exampleFlow" doc:id="9024eba9-5c09-4498-bf37-1ea0f6d16efd" >
+		<excel:new-worksheet-listener doc:name="On New Worksheet Listener" doc:id="e45e9774-1093-47b0-b0bc-5fd9c3934ddc" >
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</excel:new-worksheet-listener>
+		<ee:transform doc:name="Transform Message" doc:id="4db769b6-e4ba-4e31-a246-d213d39450a8" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="excel-connector-exampleFlow1" doc:id="8f8ac791-a8f4-48c4-b36f-e35a04ce54f4" >
+		<excel:updated-row-listener doc:name="On Updated Row Listener" doc:id="b03ebbae-b4a8-4aaa-a3ca-66076786d97b" >
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</excel:updated-row-listener>
+		<ee:transform doc:name="Transform Message" doc:id="f3207c76-62da-4cc5-86b6-965bcde2c19f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
